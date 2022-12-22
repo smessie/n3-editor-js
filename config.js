@@ -1,7 +1,7 @@
 config = {
 	http: {
 		hostname: 'http://127.0.0.1',
-        serviceHostname: 'http://localhost',
+		serviceHostname: 'http://localhost',
 		port: 3002,
 		servicePort: 3002
 	},
