@@ -1,7 +1,9 @@
 config = {
 	http: {
 		hostname: 'http://127.0.0.1',
-		port: 3002
+        serviceHostname: 'http://localhost',
+		port: 3002,
+		servicePort: 3002
 	},
 
 	reasoners: {
