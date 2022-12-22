@@ -6,8 +6,8 @@ config = {
 
 	reasoners: {
 		eye: {
-			exec: "./opt/eye/bin/eye",
-			folder: "./lib/eye"
+			exec: "/opt/eye/bin/eye",
+			folder: "/lib/eye"
 		},
 		cwm: {
 			// (use python2 for cwm)
@@ -15,9 +15,9 @@ config = {
 			exec: "/Users/wvw/cwm-1.2.1/swap/cwm.py"
 		},
 		jen3: {
-			exec: "./lib/jen3/jen3.jar",
-			codegen: "./lib/jen3/codegen.jar",
-			folder: "./lib/jen3"
+			exec: "/lib/jen3/jen3.jar",
+			codegen: "/lib/jen3/codegen.jar",
+			folder: "/lib/jen3"
 		}
 	},
 
