@@ -62,6 +62,8 @@ app.post('/n3', (request, response) => {
 
 		case 'derivations':
 		case 'deductive_closure':
+		case 'deductive_closure_plus_rules':
+		case 'grounded_deductive_closure_plus_rules':
 			doReasoning(data, ctu)
 			break
 
