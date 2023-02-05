@@ -99,52 +99,58 @@ console.log(`Listening at ${config.http.hostname}:${config.http.port}`)
 function doReasoning(options, ctu) {
 	tmp.save(options.formula, (file) => {
 
-		function end(ret) {
-			tmp.del(file)
-			ctu(ret)
-		}
+		tmp.save(options.query, (queryFile) => {
 
-		var reasoner = null;
-		switch (options.system) {
-			case "eye":
-				reasoner = eye
-				break
+			function end(ret) {
+				tmp.del(file)
+				ctu(ret)
+			}
 
-			case "cwm":
-				reasoner = cwm
-				break
+			var reasoner = null;
+			switch (options.system) {
+				case "eye":
+					reasoner = eye
+					break
 
-			case "jen3":
-				reasoner = jen3
-				break
+				case "cwm":
+					reasoner = cwm
+					break
 
-			default:
-				end({ error: `unsupported system: "${options.system}"` })
-				break
-		}
-		if (reasoner)
-			reasoner.exec(options, file, end)
+				case "jen3":
+					reasoner = jen3
+					break
+
+				default:
+					end({error: `unsupported system: "${options.system}"`})
+					break
+			}
+			if (reasoner)
+				reasoner.exec(options, file, queryFile, end)
+		})
 	})
 }
 
 function doExplaining(options, ctu) {
 	tmp.save(options.formula, (file) => {
 
-		var reasoner = null;
-		switch (options.system) {
-			case "eye":
-				reasoner = eye
-				break
+		tmp.save(options.query, (queryFile) => {
 
-			default:
-				end({ error: `unsupported system: "${options.system}"` })
-				break
-		}
+			var reasoner = null;
+			switch (options.system) {
+				case "eye":
+					reasoner = eye
+					break
 
-		reasoner.exec(options, file, (explanation) => {
-			tmp.del(file)
+				default:
+					end({error: `unsupported system: "${options.system}"`})
+					break
+			}
 
-			ctu(explanation)
+			reasoner.exec(options, file, queryFile, (explanation) => {
+				tmp.del(file)
+
+				ctu(explanation)
+			})
 		})
 	})
 }
@@ -152,11 +158,14 @@ function doExplaining(options, ctu) {
 function doImperating(options, ctu) {
 	tmp.save(options.formula, (file) => {
 
-		var reasoner = jen3;
-		reasoner.exec(options, file, (code) => {
-			tmp.del(file)
+		tmp.save(options.query, (queryFile) => {
 
-			ctu(code)
+			var reasoner = jen3;
+			reasoner.exec(options, file, queryFile, (code) => {
+				tmp.del(file)
+
+				ctu(code)
+			})
 		})
 	})
 }
