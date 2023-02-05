@@ -60,6 +60,7 @@ app.post('/n3', (request, response) => {
 
 	switch (data.task) {
 
+		case undefined:
 		case 'derivations':
 		case 'deductive_closure':
 		case 'deductive_closure_plus_rules':
