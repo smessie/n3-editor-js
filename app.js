@@ -103,6 +103,9 @@ function doReasoning(options, ctu) {
 
 			function end(ret) {
 				tmp.del(file)
+				if (queryFile) {
+					tmp.del(queryFile)
+				}
 				ctu(ret)
 			}
 
@@ -148,6 +151,9 @@ function doExplaining(options, ctu) {
 
 			reasoner.exec(options, file, queryFile, (explanation) => {
 				tmp.del(file)
+				if (queryFile) {
+					tmp.del(queryFile)
+				}
 
 				ctu(explanation)
 			})
@@ -163,6 +169,9 @@ function doImperating(options, ctu) {
 			var reasoner = jen3;
 			reasoner.exec(options, file, queryFile, (code) => {
 				tmp.del(file)
+				if (queryFile) {
+					tmp.del(queryFile)
+				}
 
 				ctu(code)
 			})
