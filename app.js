@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/n3/editor/s/*', (req, res) => {
-	res.sendFile(path.join(__dirname, "editor/index.html")); 
+	res.sendFile(path.join(__dirname, "editor/index.html"));
 });
 app.use('/n3/editor', express.static(path.join(__dirname, "editor")));
 app.use('/n3/lib/eyebrow', express.static(path.join(__dirname, "lib/eyebrow")));
@@ -46,7 +46,7 @@ app.post('/n3', (request, response) => {
 	const data = request.body
 	// console.log("data:", data);
 	console.log(
-		"task:", data.task, 
+		"task:", data.task,
 		(data.system? ", system: " + data.system : "")
 	);
 
@@ -61,6 +61,7 @@ app.post('/n3', (request, response) => {
 	switch (data.task) {
 
 		case undefined:
+		case 'none':
 		case 'derivations':
 		case 'deductive_closure':
 		case 'deductive_closure_plus_rules':
@@ -187,7 +188,7 @@ function doGenerateLink(options, ctu) {
 
 function doResolveLink(options, ctu) {
 	resolveLink(options.id)
-		.then((data) => { 
+		.then((data) => {
 			// console.log("resolved link:", data);
 			ctu({ success: data })
 		})
