@@ -47,7 +47,8 @@ app.post('/n3', (request, response) => {
 	// console.log("data:", data);
 	console.log(
 		"task:", data.task,
-		(data.system? ", system: " + data.system : "")
+		(data.system? ", system: " + data.system : ""),
+		", bnodeRelabeling:", data.bnodeRelabeling
 	);
 
 	function ctu(ret) {
