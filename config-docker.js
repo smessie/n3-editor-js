@@ -8,7 +8,7 @@ config = {
 
 	reasoners: {
 		eye: {
-			exec: "/opt/eye/bin/eye",
+			exec: "/app/opt/eye/bin/eye",
 			folder: "/lib/eye"
 		},
 		cwm: {
